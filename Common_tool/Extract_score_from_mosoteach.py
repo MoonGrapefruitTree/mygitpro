@@ -24,8 +24,12 @@ for student_box in student_boxs:
     res_dict[id] = []
     res_dict[id].append(name)
     try:
-        soures_box = student_box.findAll(name='div', attrs={'class': 'appraised-type'})[1]
-        source = soures_box.findAll(name='span')[-1].text.replace('分', '')
+        soures_box = student_box.findAll(name='div', attrs={'class': 'appraised-type'})
+        soures_box=soures_box[-1]
+        # print(soures_box)
+        sourcebb = soures_box.findAll(name='span',attrs={'class': 'user-current-score'})[-1]
+        source =sourcebb.text.replace('分', '').replace('/\/n','')
+        # print(source)
         res_dict[id].append(int(source))
     except:
         res_dict[id].append(0)
